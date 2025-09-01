@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanRaahi</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #222;
+      color: white;
+      padding: 15px;
+    }
+
+    .navbar a, .navbar button {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .navbar a:hover, .navbar button:hover {
+      color: #ff9800;
+    }
+
+    /* 🔹 Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 350px;
+      text-align: center;
+    }
+
+    .close {
+      color: red;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Promo Banner */
+    .promo {
+      background: hotpink;
+      color: white;
+      font-size: 2em;
+      font-weight: bold;
+      padding: 30px;
+      position: relative;
+      animation: slideIn 2s ease-out forwards;
+      transform: translateX(-100%);
+    }
+
+    .promo span {
+      margin: 0 15px;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #fffacd;
+      font-weight: normal;
+      font-size: 1em;
+    }
+
+    .new-price {
+      color: yellow;
+      font-size: 1.4em;
+    }
+
+    @keyframes slideIn {
+      to { transform: translateX(0); }
+    }
+
+    /* Logo and tagline */
+    .logo-container {
+      margin-top: 60px;
+    }
+
+    .logo {
+      font-size: 3em;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .tagline {
+      font-size: 1.2em;
+      margin-top: 10px;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      margin-top: 20px;
+    }
+
+    .search-bar input[type="text"] {
+      width: 60%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      font-size: 1em;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background: #222;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .search-bar button:hover {
+      background: #ff9800;
+    }
+
+    /* Features Section */
+    .features {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #444;
+    }
+
+    .features span {
+      margin: 0 20px;
+    }
+
+    .divider {
+      border-left: 2px solid #aaa;
+      height: 20px;
+    }
+
+    /* Follow Your Vibe Section */
+    .vibe-section {
+      margin-top: 100px;
+      margin-bottom: 120px;
+    }
+
+    .vibe-section h1 {
+      font-style: italic;
+      font-size: 2em;
+    }
+
+    .vibe-section p {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #666;
+    }
+
+    /* Destinations Section */
+    .destinations {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      gap: 50px;
+    }
+
+    .destination {
+      text-align: center;
+    }
+
+    .destination img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ccc;
+    }
+
+    .destination p {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    /* Curious Section */
+    .curious-section {
+      margin-top: 80px;
+      margin-bottom: 100px;
+    }
+
+    .curious-section h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .curious-section h3 {
+      margin-top: 15px;
+      font-size: 1.5em;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Why Choose */
+    .why-choose {
+      padding: 60px 40px;
+      background: #fafafa;
+      text-align: center;
+    }
+
+    .why-choose h1 {
+      font-size: 2.5rem;
+      color: #d63384;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .why-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .why-left, .why-right {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .why-point {
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .why-point h2 {
+      font-size: 1.3rem;
+      color: #28a745;
+      margin-bottom: 8px;
+    }
+
+    .why-point p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* Hero Video */
+    .hero-video {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      overflow: hidden;
+    }
+
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+    }
+
+    .video-overlay h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .video-overlay p {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="#" id="loginBtn">Login</a>
+    <a href="#">Search</a>
+    <a href="#">Explore</a>
+    <a href="#">For You</a>
+    <a href="#">About Us</a>
+    <a href="#">More</a>
+    <button id="tripBtn">Upcoming Trip</button>
+  </div>
+
+  <!-- Promo Banner -->
+  <div class="promo">
+    🎉 25% OFF on your first trip! 
+    <span class="old-price">₹8000</span> → 
+    <span class="new-price">₹6000</span>
+  </div>
+
+  <!-- Logo and tagline -->
+  <div class="logo-container">
+    <div class="logo">UrbanRaahi</div>
+    <div class="tagline">Not just trip lifelong stories</div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search your next destination...">
+      <button>Search</button>
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+      <span>24*7 Support</span>
+      <div class="divider"></div>
+      <span>100% Personalised</span>
+    </div>
+  </div>
+
+  <!-- Hero Video -->
+  <section class="hero-video">
+    <video autoplay muted loop playsinline>
+      <source src="v.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay">
+      <h1>Discover India with UrbanRaahi</h1>
+      <p>Travel Beyond Destinations, Live the Experience</p>
+    </div>
+  </section>
+
+  <!-- Follow Your Vibe -->
+  <div class="vibe-section">
+    <h1><i>Follow Your VIBE</i></h1>
+    <p>Travel where your mood takes you</p>
+  </div>
+
+  <!-- Destinations -->
+  <div class="destinations">
+    <div class="destination">
+      <img src="/Aiims Rishikesh Wallpaper.jpeg" alt="Rishikesh">
+      <p>Rishikesh</p>
+    </div>
+    <div class="destination">
+      <img src="vrindavan.jpg" alt="Vrindavan">
+      <p>Vrindavan</p>
+    </div>
+    <div class="destination">
+      <img src="mathura.jpg" alt="Mathura">
+      <p>Mathura</p>
+    </div>
+  </div>
+
+  <!-- Curious Section -->
+  <div class="curious-section">
+    <h1>Woven for the endlessly curious</h1>
+    <h3>The beautifully wild and the unapologetically real</h3>
+  </div>
+
+  <!-- Why Choose -->
+  <section class="why-choose">
+    <h1>Why Choose UrbanRaahi?</h1>
+    <div class="why-container">
+      <div class="why-left">
+        <div class="why-point">
+          <h2>Explore Local Places</h2>
+          <p>We help you discover hidden gems and authentic experiences, beyond the tourist checklists.</p>
+        </div>
+        <div class="why-point">
+          <h2>Female Guides for Female Tourists</h2>
+          <p>Your safety and comfort are our priority. Female travelers can opt for female trip guides.</p>
+        </div>
+        <div class="why-point">
+          <h2>Affordable & Transparent Pricing</h2>
+          <p>No hidden costs. Get clear prices with unmatched experiences.</p>
+        </div>
+        <div class="why-point">
+          <h2>24/7 Travel Assistance</h2>
+          <p>Always available for your support, no matter where you are.</p>
+        </div>
+      </div>
+      <div class="why-right">
+        <div class="why-point">
+          <h2>Solo & Group Friendly</h2>
+          <p>Travel solo or with a group – either way, you’ll find your tribe with us.</p>
+        </div>
+        <div class="why-point">
+          <h2>Unique Stays</h2>
+          <p>Handpicked hostels, hotels, and homestays that are safe, central, and Instagram-worthy.</p>
+        </div>
+        <div class="why-point">
+          <h2>Adventure with Safety</h2>
+          <p>From river rafting to heritage walks, we combine thrill with care.</p>
+        </div>
+        <div class="why-point">
+          <h2>Community Vibes</h2>
+          <p>Meet new people, share stories, and build lifelong friendships.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 OTP Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Login with Phone Number</h2>
+      <input type="tel" id="phone" placeholder="+91XXXXXXXXXX"><br><br>
+      <div id="recaptcha-container"></div>
+      <button onclick="sendOTP()">Send OTP</button><br><br>
+      <input type="text" id="otp" placeholder="Enter OTP"><br><br>
+      <button onclick="verifyOTP()">Verify OTP</button>
+    </div>
+  </div>
+
+  <script>
+    // Modal handling
+    const modal = document.getElementById("loginModal");
+    const loginBtn = document.getElementById("loginBtn");
+    const closeModal = document.getElementById("closeModal");
+
+    loginBtn.onclick = function() {
+      modal.style.display = "flex";
+    }
+
+    closeModal.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Trip button
+    const tripBtn = document.getElementById("tripBtn");
+    tripBtn.onclick = function() {
+      alert("Upcoming Trips feature coming soon!");
+    }
+  </script>
+
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+  </script>
+
+</body>
+</html>
