@@ -118,6 +118,73 @@
       font-style: italic;
       color: #555;
     }
+  /* 🔥 About Us Full Section */
+.about-full-section {
+  background: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.about-full-section h1 {
+  font-size: 2.8rem;
+  color: #d63384;
+  margin-bottom: 10px;
+}
+
+.about-full-section .tagline {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: left;
+}
+
+.about-box {
+  background: #fafafa;
+  padding: 30px 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.about-box h2 {
+  color: #28a745;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.about-box p,
+.about-box ul {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.about-box ul {
+  padding-left: 20px;
+}
+
+.thank-you {
+  margin-top: 50px;
+  font-size: 1.2rem;
+  color: #28a745;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
 
     /* Search Bar */
     .search-bar {
@@ -304,20 +371,90 @@
     .video-overlay p {
       font-size: 1.2rem;
     }
+    /* 🔘 Vlog Button Style */
+.vlog-btn {
+  margin-top: 30px;
+  padding: 12px 25px;
+  background: #d63384;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.vlog-btn:hover {
+  background: #c2185b;
+}
+
+/* 🎥 Vlog Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #218838;
+}
+
+.close {
+  float: right;
+  font-size: 28px;
+  color: red;
+  cursor: pointer;
+}
+
+
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <a href="#" id="loginBtn">Login</a>
-    <a href="#">Search</a>
+<div class="navbar">
+   <a href="#" id="loginBtn">Login</a>
+    <a href="#">Search</a> 
     <a href="#">Explore</a>
-    <a href="#">For You</a>
-    <a href="#">About Us</a>
-    <a href="#">More</a>
-    <button id="tripBtn">Upcoming Trip</button>
-  </div>
+     <button id="forYouBtn">For You</button>
+      <a href="#about" id="aboutBtn">About Us</a>
+       <a href="#">More</a>
+        <button id="tripBtn">Upcoming Trip</button> </div>
+
 
   <!-- Promo Banner -->
   <div class="promo">
@@ -440,6 +577,51 @@
       <button onclick="verifyOTP()">Verify OTP</button>
     </div>
   </div>
+ <!-- 🔹 About Us Section -->
+<section id="about" class="about-full-section">
+  <h1>🌍 About <span>UrbanRaahi</span></h1>
+  <p class="tagline">Not Just Trips – Lifelong Stories</p>
+
+  <div class="about-content">
+    <div class="about-box">
+      <h2>🎯 Our Mission</h2>
+      <p>We help India’s youth explore spiritual & rural destinations through authentic and budget-friendly experiences. No fluff, just real vibes.</p>
+    </div>
+
+    <div class="about-box">
+      <h2>👥 Who We Serve</h2>
+      <p>Students, working professionals, and curious solo travelers aged 18–35 who crave meaningful weekend escapes.</p>
+    </div>
+
+    <div class="about-box">
+      <h2>🚀 Why UrbanRaahi?</h2>
+      <ul>
+        <li>✅ Curated spiritual + village experiences</li>
+        <li>✅ Budget trips under ₹6,000</li>
+        <li>✅ Local guides + verified organisers</li>
+        <li>✅ One platform for planning, payment, and support</li>
+      </ul>
+    </div>
+
+    <div class="about-box">
+      <h2>📍 Where We Operate</h2>
+      <p><strong>Now Live:</strong> Vrindavan, Rishikesh</p>
+      <p><strong>Coming Soon:</strong> Jaipur, Himachal</p>
+    </div>
+
+    <div class="about-box">
+      <h2>💬 Our Vision</h2>
+      <p>We believe in travel that transforms — not just where you go, but how you feel and grow. Join a community that values experience over expense.</p>
+    </div>
+  </div>
+
+  <p class="thank-you">🌟 Thank you for being part of the UrbanRaahi journey!</p>
+</section>
+
+
+
+
+
 
   <script>
     // Modal handling
@@ -483,8 +665,51 @@
 
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
+    // About Us modal
+
   </script>
-  <script src ="firebase.js" defer></script>
+  <script src="about us.js" defer></script>
+
+  
+  
+  <script src ="js.js" defer></script>
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const vlogModal = document.getElementById("vlogModal");
+  const forYouBtn = document.getElementById("forYouBtn");
+  const closeVlogModal = document.getElementById("closeVlogModal");
+
+  forYouBtn.onclick = () => {
+    vlogModal.style.display = "flex";
+  }
+
+  closeVlogModal.onclick = () => {
+    vlogModal.style.display = "none";
+  }
+
+  window.addEventListener("click", (event) => {
+    if (event.target === vlogModal) vlogModal.style.display = "none";
+  });
+});
+</script>
+
+  
+</script>
+ <!-- 🎥 Vlog Modal -->
+<div id="vlogModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeVlogModal">&times;</span>
+    <h2>Add Your Trip Vlog</h2>
+    <input type="text" placeholder="Vlog Title" id="vlogTitle"><br><br>
+    <input type="url" placeholder="YouTube or Drive Link" id="vlogLink"><br><br>
+    <textarea placeholder="Describe your trip..." id="vlogDesc"></textarea><br><br>
+    <button onclick="submitVlog()">Submit Vlog</button>
+  </div>
+</div>
+
+
+
+
 
 </body>
 </html>
